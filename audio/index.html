@@ -20,6 +20,18 @@
 </div>
 
 <script type="text/javascript">
+
+let numberOfVideoDevices;
+
+  navigator.mediaDevices.enumerateDevices()
+  .then ( function (devices) {
+      console.log(devices)
+      const videoDevices = devices.filter(device => device.kind === 'videoinput')
+      console.log(videoDevices.length);
+      console.log(videoDevices);
+
+      numberOfVideoDevices = videoDevices.length;
+  })
   // Classifier Variable
   let classifier;
   // Model URL
@@ -48,17 +60,23 @@
   }
 
   function setup() {
+    console.log('number of devices: ' + numberOfVideoDevices)
     createCanvas(320, 260);
     // Create the video
-    // video = createCapture(VIDEO);
-    video = createCapture({
-    audio: false,
-    video: {
-      facingMode: {
-        exact: "environment"
-      }
+    if(numberOfVideoDevices === 1){
+      video = createCapture(VIDEO);
+    } else {
+      video = createCapture({
+        audio: false,
+        video: {
+          facingMode: {
+            exact: "environment"
+          }
+        }
+      });
     }
-  });
+    
+    
     video.size(320, 240);
     video.hide();
 
