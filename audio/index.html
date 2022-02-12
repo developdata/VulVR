@@ -63,9 +63,8 @@ let numberOfVideoDevices;
     console.log('number of devices: ' + numberOfVideoDevices)
     createCanvas(320, 260);
     // Create the video
-    if(numberOfVideoDevices === 1){
-      video = createCapture(VIDEO);
-    } else {
+
+    if(numberOfVideoDevices > 1){
       video = createCapture({
         audio: false,
         video: {
@@ -74,7 +73,16 @@ let numberOfVideoDevices;
           }
         }
       });
+    } else {
+      video = createCapture(VIDEO);
     }
+
+
+    // if(numberOfVideoDevices === 1){
+      
+    // } else {
+      
+    // }
     
     
     video.size(320, 240);
