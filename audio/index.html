@@ -20,7 +20,8 @@
 </div>
 
 <script type="text/javascript">
-let numberOfVideoDevices = 2;
+
+let numberOfVideoDevices;
   navigator.mediaDevices.enumerateDevices()
   .then ( function (devices) {
       console.log(devices)
@@ -58,23 +59,17 @@ let numberOfVideoDevices = 2;
   }
 
   function setup() {
-    console.log('number of devices: ' + numberOfVideoDevices)
-    createCanvas(320, 260);
+    createCanvas(windowWidth, windowHeight);
     // Create the video
-    if(numberOfVideoDevices === 1){
-      video = createCapture(VIDEO);
-    } else {
-      video = createCapture({
-        audio: false,
-        video: {
-          facingMode: {
-            exact: "environment"
-          }
-        }
-      });
+    // video = createCapture(VIDEO);
+    video = createCapture({
+    audio: false,
+    video: {
+      facingMode: {
+        exact: "environment"
+      }
     }
-    
-    
+  });
     video.size(320, 240);
     video.hide();
 
@@ -122,6 +117,10 @@ let numberOfVideoDevices = 2;
     }
     // Classifiy again!
     classifyVideo();
+  }
+
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
   }
 </script>
 </body>
