@@ -28,7 +28,7 @@ let numberOfVideoDevices;
       console.log(devices)
       const videoDevices = devices.filter(device => device.kind === 'videoinput')
       console.log(videoDevices.length);
-      console.log(videoDevices);
+      
 
       numberOfVideoDevices = videoDevices.length;
   })
@@ -65,6 +65,7 @@ let numberOfVideoDevices;
     // Create the video
 
     if(numberOfVideoDevices > 1){
+      console.log('in createCatpure')
       video = createCapture({
         audio: false,
         video: {
@@ -76,13 +77,6 @@ let numberOfVideoDevices;
     } else {
       video = createCapture(VIDEO);
     }
-
-
-    // if(numberOfVideoDevices === 1){
-      
-    // } else {
-      
-    // }
     
     
     video.size(320, 240);
