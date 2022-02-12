@@ -15,9 +15,9 @@
   Your browser does not support the audio element.
 </audio>
 
-<div id="toggleAudio">
+<!-- <div id="toggleAudio">
   <h1>Allow audio</h1>
-</div>
+</div> -->
 
 <script type="text/javascript">
   // Classifier Variable
@@ -35,20 +35,36 @@
   // To store the classification
   let label = "";
 
+  //button
+  var audio_button;
 
 
-  audioButton.addEventListener('click',function() {
-    x.play();
-    x.pause();
-    console.log('clicked')
-  });
+
+  // audioButton.addEventListener('click',function() {
+  //   x.play();
+  //   x.pause();
+  //   console.log('clicked')
+  // });
   // Load the model first
   function preload() {
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   }
 
+  function allow_audio(){
+    
+    x.play();
+    x.pause();
+    console.log('clicked')
+
+  }
+
   function setup() {
-    createCanvas(320, 260);
+    createCanvas(windowWidth, windowHeight);
+
+    // Create the button
+    color_button = createButton("allow audio");
+    color_button.position(10, 10);
+    color_button.mouseClicked(allow_audio);
     // Create the video
     // video = createCapture(VIDEO);
     createCapture({
@@ -59,7 +75,7 @@
       }
     }
   });
-    video.size(320, 240);
+    video.size(windowWidth, windowHeight);
     video.hide();
 
     flippedVideo = ml5.flipImage(video);
@@ -106,6 +122,10 @@
     }
     // Classifiy again!
     classifyVideo();
+  }
+
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
   }
 </script>
 </body>
