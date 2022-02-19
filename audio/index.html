@@ -7,6 +7,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
     <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+
+    <style>
+      #toggleAudio{
+        width:100%;
+        background-color: aqua;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 12px;
+      }
+      
+    </style>
   </head>
 <body>
 
@@ -16,7 +28,7 @@
 </audio>
 
 <div id="toggleAudio">
-  <h1 id="test">Allow audio</h1>
+  <h1>Allow audio ***</h1>
 </div>
 
 <script type="text/javascript">
@@ -35,38 +47,11 @@
   // To store the classification
   let label = "";
 
-  if (confirm('Turn on audio')) {
-  
+  audioButton.addEventListener('click',function() {
     x.play();
-    // x.pause();
-  console.log('audio turned on');
-} else {
-  // Do nothing!
-  console.log('audio not turned on');
-}
-
-  // let audioOn = confirm("Press a button!");
-
-  // console.log('audioOn = ' + audioOn)
-
-  let temp = document.getElementById('test');
-
-  temp.innerHTML = audioOn
-
-  // if(audionOn === true){
-  //   // x.play();
-  //   // x.pause();
-  //   temp.innerHTML = 'clicked yes'
-
-  // } else {
-  //   temp.innerHTML = 'clicked no'
-  // }
-
-  // audioButton.addEventListener('click',function() {
-  //   x.play();
-  //   x.pause();
-  //   console.log('clicked')
-  // });
+    x.pause();
+    console.log('clicked')
+  });
   // Load the model first
   function preload() {
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
@@ -122,7 +107,7 @@
     // The results are in an array ordered by confidence.
     // console.log(results[0]);
     label = results[0].label;
-    // console.log(label);
+    console.log(label);
 
     if(label === "square"){
         x.play(); 
