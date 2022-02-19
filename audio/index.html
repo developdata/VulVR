@@ -9,13 +9,20 @@
     <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
 
     <style>
+      body{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      }
       #toggleAudio{
         width:100%;
-        background-color: aqua;
+        background-color: chartreuse;
         text-align: center;
         cursor: pointer;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border-radius: 12px;
+      }
+
+      #toggleAudio:active {
+        background-color: aqua; 
       }
       
     </style>
@@ -28,7 +35,7 @@
 </audio>
 
 <div id="toggleAudio">
-  <h1>Allow audio ***</h1>
+  <h1 id="audioText">ALLOW AUDIO</h1>
 </div>
 
 <script type="text/javascript">
@@ -37,20 +44,36 @@
   // Model URL
   let imageModelURL = './model/';
 
+  let audioOn = false;
+
   var x = document.getElementById("myAudio"); 
   let audioButton = document.getElementById("toggleAudio");
-  console.log(audioButton);
+  let audioText = document.getElementById("audioText");
+
+  
   
   // Video
-  let video;
-  let flippedVideo;
-  // To store the classification
-  let label = "";
+    let video;
+    let flippedVideo;
+    // To store the classification
+    let label = "";
 
   audioButton.addEventListener('click',function() {
-    x.play();
+    // x.play();
+    // x.pause();
+
+    if(audioOn){
+      audioText.innerHTML = "BLOCK AUDIO";
+      audioOn = false;
+      x.volume = 0;
+    } else{
+      audioText.innerHTML = "ALLOW AUDIO";
+      audioOn = true;
+      x.play();
     x.pause();
-    console.log('clicked')
+      x.volume = 0.5;
+    }
+    
   });
   // Load the model first
   function preload() {
@@ -94,7 +117,6 @@
     flippedVideo = ml5.flipImage(video)
     classifier.classify(flippedVideo, gotResult);
     flippedVideo.remove();
-
   }
 
   // When we get a result
@@ -105,7 +127,6 @@
       return;
     }
     // The results are in an array ordered by confidence.
-    // console.log(results[0]);
     label = results[0].label;
     console.log(label);
 
