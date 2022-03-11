@@ -22,7 +22,7 @@
       }
 
       #toggleAudio:active {
-        background-color: aqua; 
+        background-color: rgb(255, 0, 149); 
       }
       
     </style>
@@ -72,13 +72,14 @@
 
     if(audioOn){
       audioText.innerHTML = "BLOCK AUDIO";
-      audioOn = false;
-      x.volume = 0;
-    } else{
-      audioText.innerHTML = "ALLOW AUDIO";
       audioOn = true;
       x.play();
     x.pause();
+      x.volume = 1;
+    } else{
+      audioText.innerHTML = "ALLOW AUDIO";
+      audioOn = false;
+      
       x.volume = 0.5;
     }
     
