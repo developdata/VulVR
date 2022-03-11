@@ -29,8 +29,13 @@
   </head>
 <body>
 
-<audio id="myAudio">
+<!-- <audio id="myAudio">
   <source src="audio/raindrops.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio> -->
+
+<audio id="myAudio">
+  <source src="" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
@@ -50,7 +55,12 @@
   let audioButton = document.getElementById("toggleAudio");
   let audioText = document.getElementById("audioText");
 
-  
+  let audioOptions = {
+    square : "audio/raindrops.mp3",
+    triangle : "audio/glass.mp3",
+    circle : "audio/storm.mp3",
+    star : "audio/train.mp3",
+  }
   
   // Video
     let video;
@@ -131,7 +141,19 @@
     console.log(label);
 
     if(label === "square"){
-        x.play(); 
+      console.log(label)
+      x.src = audioOptions["square"];
+      console.log(x.src);
+      x.play(); 
+    } else if(label === "triangle"){
+      x.src = audioOptions["triangle"];
+      x.play(); 
+    } else if(label === "circle"){
+      x.src = audioOptions["circle"];
+      x.play(); 
+    } else if(label === "star"){
+      x.src = audioOptions["star"];
+      x.play(); 
     } else {
         x.pause();
     }
