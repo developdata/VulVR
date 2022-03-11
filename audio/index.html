@@ -56,10 +56,8 @@
   let audioText = document.getElementById("audioText");
 
   let audioOptions = {
-    square : "audio/raindrops.mp3",
     triangle : "audio/glass.mp3",
-    circle : "audio/storm.mp3",
-    star : "audio/train.mp3",
+    circle : "audio/raindrops.mp3",
   }
   
   // Video
@@ -140,24 +138,35 @@
     label = results[0].label;
     console.log(label);
 
-    if(label === "square"){
-      console.log(label)
-      x.src = audioOptions["square"];
-      console.log(x.src);
-      x.play(); 
-    } else if(label === "triangle"){
+    if(label === "triangle"){
       x.src = audioOptions["triangle"];
       x.play(); 
     } else if(label === "circle"){
       x.src = audioOptions["circle"];
       x.play(); 
-    } else if(label === "star"){
-      x.src = audioOptions["star"];
-      x.play(); 
     } else {
-      x.src = audioOptions["star"];
-        // x.pause();
+      // x.src = audioOptions["star"];
+        x.pause();
     }
+
+    // if(label === "square"){
+    //   console.log(label)
+    //   x.src = audioOptions["square"];
+    //   console.log(x.src);
+    //   x.play(); 
+    // } else if(label === "triangle"){
+    //   x.src = audioOptions["triangle"];
+    //   x.play(); 
+    // } else if(label === "circle"){
+    //   x.src = audioOptions["circle"];
+    //   x.play(); 
+    // } else if(label === "star"){
+    //   x.src = audioOptions["star"];
+    //   x.play(); 
+    // } else {
+    //   x.src = audioOptions["star"];
+    //     // x.pause();
+    // }
     // Classifiy again!
     classifyVideo();
   }
